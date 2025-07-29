@@ -20,6 +20,24 @@
 
 // module.exports = nextConfig
 
+// /** @type {import('next').NextConfig} */
+// const nextConfig = {
+//   eslint: {
+//     ignoreDuringBuilds: true,
+//   },
+//   typescript: {
+//     ignoreBuildErrors: true,
+//   },
+//   images: {
+//     unoptimized: true,
+//   },
+//   // Minimal config to avoid routes manifest issues
+//   trailingSlash: false,
+//   swcMinify: true,
+// }
+
+// module.exports = nextConfig
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: {
@@ -31,9 +49,15 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  // Minimal config to avoid routes manifest issues
+  // Add these for Railway compatibility
+  output: 'standalone',
+  experimental: {
+    serverComponentsExternalPackages: []
+  },
   trailingSlash: false,
   swcMinify: true,
+  // Ensure proper routing
+  generateEtags: false,
 }
 
 module.exports = nextConfig
