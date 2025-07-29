@@ -120,25 +120,32 @@ export default function Home() {
                       alt="Client"
                       width={40}
                       height={40}
-                      className="rounded-full border-3 border-white shadow-sm"
+                      className="rounded-full border-[3px] border-white shadow-sm object-cover"
                     />
                     <Image
-                      src="/images/client-woman2.jpg"
+                      src="/images/client-woman3.jpg"
                       alt="Client"
                       width={40}
                       height={40}
-                      className="rounded-full border-3 border-white shadow-sm"
+                      className="rounded-full border-[3px] border-white shadow-sm object-cover"
+
                     />
                     <Image
                       src="/images/client-sarah.jpg"
                       alt="Client"
+                      width={30}
+                      height={30}
+                      className="rounded-full border-[3px] border-white shadow-sm object-cover"
+                    />
+                     <Image
+                      src="/images/professional-man.jpg"
+                      alt="Client"
                       width={40}
                       height={40}
-                      className="rounded-full border-3 border-white shadow-sm"
+                      className="rounded-full border-[3px] border-white shadow-sm object-cover"
+
                     />
-                    <div className="w-10 h-10 bg-gray-200 rounded-full border-3 border-white shadow-sm flex items-center justify-center">
-                      <span className="text-xs text-gray-600 font-semibold">+</span>
-                    </div>
+                    
                   </div>
                 </div>
 
