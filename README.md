@@ -44,10 +44,6 @@ A modern, professional website for chartered accountant services built with Next
 2. **Install dependencies**
    bash
    npm install
-   # or
-   yarn install
-   # or
-   pnpm install
    
 
 3. **Install shadcn/ui components**
