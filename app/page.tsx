@@ -42,6 +42,7 @@ export default function Home() {
       {/* Navigation */}
       <nav className="bg-white shadow-sm border-b sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4">
+          
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center">
@@ -87,8 +88,21 @@ export default function Home() {
             >
               Contact Me
             </Button>
+             
+             
+             
+             <Image
+                      src="/images/download.jpg"
+                      alt="ashoka stambha"
+                      width={60}
+                      height={60}
+                   
+
+                    />
           </div>
+          
         </div>
+        
       </nav>
 
       {/* Page 1: I'm David - Hero Section */}
@@ -96,9 +110,9 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-8">
             <h1 className="text-6xl lg:text-7xl font-bold text-gray-900 leading-tight mb-4">
-              I'm <span className="text-orange-500">David Miller</span>
+              I'm <span className="text-orange-500">Nirmal Jain</span>
             </h1>
-            <p className="text-xl text-gray-600">Chartered Accountant based in USA</p>
+            <p className="text-xl text-gray-600">Chartered Accountant based in Delhi</p>
           </div>
 
           <div className="grid lg:grid-cols-3 gap-8 items-center mb-12">
@@ -109,7 +123,7 @@ export default function Home() {
                   
                   <div className="text-3xl text-orange-500 font-bold mb-4">❝</div>
                   <p className="text-gray-600 text-lg leading-relaxed">
-                    David's Expert Financial Guidance Transformed Our Business – Highly Recommended!
+                   Nirmal's Expert Financial Guidance Transformed Our Business – Highly Recommended!
                   </p>
                 </div>
 
@@ -167,7 +181,7 @@ export default function Home() {
               <div className="relative">
                 <Image
                   src="/images/david-miller-professional.jpg"
-                  alt="David Miller - Charted Accountant"
+                  alt="Nirmal Jain - Charted Accountant"
                   width={320}
                   height={320}
                   className="rounded-full w-80 h-80 object-cover object-top"
@@ -391,7 +405,7 @@ export default function Home() {
               <div className="space-y-4">
                 <div className="text-orange-500 font-medium">— About Me</div>
                 <h2 className="text-4xl lg:text-5xl font-bold text-gray-900">
-                  Who is <span className="text-orange-500">David Miller</span>?
+                  Who is <span className="text-orange-500">Nirmal Jain</span>?
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed">
                   With over 16 years of experience in accounting and financial consulting, I help businesses optimize
@@ -426,7 +440,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-center space-x-2">
                   <Mail className="h-5 w-5 text-orange-500" />
-                  <span className="text-gray-700">david@financeexpert.com</span>
+                  <span className="text-gray-700">Nirmal@financeexpert.com</span>
                 </div>
               </div>
             </div>
@@ -466,7 +480,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="text-4xl font-bold">
-                  $150<span className="text-lg font-normal opacity-80"> / Hour</span>
+                  ₹13,020 INR<span className="text-lg font-normal opacity-80"> / Hour</span>
                 </div>
               </div>
               <CardContent className="p-8">
@@ -527,7 +541,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="text-4xl font-bold">
-                  $2,800<span className="text-lg font-normal opacity-80"> / Month</span>
+                  ₹243,040 INR<span className="text-lg font-normal opacity-80"> / Month</span>
                 </div>
               </div>
               <CardContent className="p-8">
@@ -588,7 +602,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="text-4xl font-bold">
-                  $7,500<span className="text-lg font-normal opacity-80"> / Qtr.</span>
+                   ₹651,000 INR<span className="text-lg font-normal opacity-80"> / Qtr.</span>
                 </div>
               </div>
               <CardContent className="p-8">
@@ -701,9 +715,9 @@ export default function Home() {
                       <label className="block text-sm font-semibold text-gray-900 mb-2">Budget Range (USD) *</label>
                       <select className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 bg-gray-50">
                         <option>Select Range</option>
-                        <option>$1,000 - $5,000</option>
-                        <option>$5,000 - $10,000</option>
-                        <option>$10,000+</option>
+                        <option>₹84,000 INR - ₹435,350 INR </option>
+                        <option> ₹435,350 INR -  ₹865,000 INR</option>
+                        <option> ₹865,000 INR+</option>
                       </select>
                     </div>
                     <div>
@@ -737,15 +751,16 @@ export default function Home() {
               <Card className="p-8 bg-black text-white border-0 rounded-3xl">
                 <h3 className="text-2xl font-bold text-orange-500 mb-6">Address</h3>
                 <p className="text-gray-300 mb-8">
-                  123 Financial District
+                  123, Financial Square,
+
                   <br />
-                  Suite 456, New York 10001
+                  Suite 456, New Delhi 110001
                 </p>
 
                 <h3 className="text-2xl font-bold text-orange-500 mb-6">Contact</h3>
                 <div className="space-y-4 mb-8">
                   <div>Phone : +1 (555) 123-4567</div>
-                  <div>Email : david@financeexpert.com</div>
+                  <div>Email :Nirmal@financeexpert.com</div>
                 </div>
 
                 <h3 className="text-2xl font-bold text-orange-500 mb-6">Time</h3>
@@ -1111,11 +1126,11 @@ export default function Home() {
               <ul className="space-y-3 text-gray-600">
                 <li>+0123-456-789</li>
                 <li>www.financeexpert.com</li>
-                <li>david@financeexpert.com</li>
+                <li>Nirmal@financeexpert.com</li>
                 <li>
-                  2464 Royal Ln. Mesa,
+                 123, Financial Square,
                   <br />
-                  New Jersey 45463
+                  Suite 456, New Delhi 110001
                 </li>
               </ul>
             </div>
