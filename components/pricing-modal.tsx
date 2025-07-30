@@ -131,7 +131,7 @@ export function PricingModal() {
           </div>
 
           {/* Development Timeframe */}
-          <Card>
+          <Card> 
             <CardHeader>
               <CardTitle className="text-xl text-orange-600">Development Timeframe</CardTitle>
             </CardHeader>
