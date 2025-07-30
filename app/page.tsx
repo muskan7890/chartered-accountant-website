@@ -1,5 +1,9 @@
+
+
 "use client"
 
+import type React from "react"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -23,12 +27,19 @@ import {
   Linkedin,
   Instagram,
   Youtube,
+  Clock,
+  Globe,
+  MessageCircle,
+  Bell,
+  CreditCard,
+  BarChart3,
 } from "lucide-react"
 import Image from "next/image"
-import { useState } from "react"
+import Link from "next/link"
 
 export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(2)
+  const [showSuccessModal, setShowSuccessModal] = useState(false)
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -37,12 +48,50 @@ export default function Home() {
     }
   }
 
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    setShowSuccessModal(true)
+    // Auto-close the modal after 3 seconds
+    setTimeout(() => {
+      setShowSuccessModal(false)
+    }, 3000)
+  }
+
+  // Pricing Plan Data
+  const whyCANeedWebsite = [
+    "Showcase your expertise and services online",
+    "Enable secure document sharing with clients",
+    "Offer secure document sharing with clients",
+    "Offer real-time financial updates and reminders",
+    "Enhance trust and brand credibility",
+    "Generate more client leads through online presence",
+  ]
+
+  const websiteFeatures = [
+    { icon: Globe, text: "Professional & Responsive Design: Modern, mobile-friendly interface" },
+    { icon: FileText, text: "About Us & Services Page: Highlight your CA expertise" },
+    { icon: Shield, text: "Secure Client Portal: Upload and download documents safely" },
+    { icon: Calculator, text: "Tax Calculators: Integrated GST, Income Tax calculators" },
+    { icon: Clock, text: "Appointment Booking: Online scheduling system" },
+    { icon: MessageCircle, text: "Live Chat & WhatsApp Integration: Real-time client support" },
+    { icon: BarChart3, text: "SEO & Analytics: Optimize your site for better visibility" },
+  ]
+
+  const mobileFeatures = [
+    { icon: Shield, text: "Client Login: Personalized dashboard for each client" },
+    { icon: FileText, text: "Document Upload & Sharing: Secure storage and access" },
+    { icon: Bell, text: "Push Notifications: Due date reminders for GST, ITR, audits" },
+    { icon: FileText, text: "E-sign Integration: For fast approvals and agreements" },
+    { icon: MessageCircle, text: "In-app Chat: Direct communication with clients" },
+    { icon: CreditCard, text: "Payment Gateway: Accept professional fees online" },
+    { icon: BarChart3, text: "Reports & Statements: Real-time access to financial reports" },
+  ]
+
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
       <nav className="bg-white shadow-sm border-b sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4">
-          
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center">
@@ -75,11 +124,16 @@ export default function Home() {
               >
                 <b>Pricing</b>
               </button>
+              <Link href="/pricing-plan">
+                <button className="text-gray-700 hover:text-orange-500 font-medium transition-colors">
+                  <b>Pricing Plan</b>
+                </button>
+              </Link>
               <button
                 onClick={() => scrollToSection("contact")}
                 className="text-gray-700 hover:text-orange-500 font-medium transition-colors"
               >
-               <b>Contact</b> 
+                <b>Contact</b>
               </button>
             </div>
             <Button
@@ -88,21 +142,9 @@ export default function Home() {
             >
               Contact Me
             </Button>
-             
-             
-             
-             <Image
-                      src="/images/download.jpg"
-                      alt="ashoka stambha"
-                      width={60}
-                      height={60}
-                   
-
-                    />
+            <Image src="/images/download.jpg" alt="ashoka stambha" width={60} height={60} />
           </div>
-          
         </div>
-        
       </nav>
 
       {/* Page 1: I'm David - Hero Section */}
@@ -114,19 +156,16 @@ export default function Home() {
             </h1>
             <p className="text-xl text-gray-600">Chartered Accountant based in Delhi</p>
           </div>
-
           <div className="grid lg:grid-cols-3 gap-8 items-center mb-12">
             {/* Left Side - Testimonial */}
             <div className="lg:col-span-1 space-y-6">
               <div className="bg-white rounded-2xl shadow-lg p-6 border">
                 <div className="mb-6">
-                  
                   <div className="text-3xl text-orange-500 font-bold mb-4">❝</div>
                   <p className="text-gray-600 text-lg leading-relaxed">
-                   Nirmal's Expert Financial Guidance Transformed Our Business – Highly Recommended!
+                    Nirmal's Expert Financial Guidance Transformed Our Business – Highly Recommended!
                   </p>
                 </div>
-
                 <div className="flex items-center mb-4">
                   <div className="flex -space-x-2">
                     <Image
@@ -142,7 +181,6 @@ export default function Home() {
                       width={40}
                       height={40}
                       className="rounded-full border-[3px] border-white shadow-sm object-cover"
-
                     />
                     <Image
                       src="/images/client-sarah.jpg"
@@ -151,18 +189,15 @@ export default function Home() {
                       height={30}
                       className="rounded-full border-[3px] border-white shadow-sm object-cover"
                     />
-                     <Image
+                    <Image
                       src="/images/professional-man.jpg"
                       alt="Client"
                       width={40}
                       height={40}
                       className="rounded-full border-[3px] border-white shadow-sm object-cover"
-
                     />
-                    
                   </div>
                 </div>
-
                 <div className="text-orange-500 font-bold text-lg">450+ Reviews</div>
                 <div className="flex items-center">
                   <span className="text-2xl font-bold text-gray-900 mr-2">(4.9 of 5)</span>
@@ -175,12 +210,11 @@ export default function Home() {
                 <div className="text-gray-500 text-sm mt-1">Reviews from Valued Clients</div>
               </div>
             </div>
-
             {/* Center - Main Image */}
             <div className="lg:col-span-1 flex justify-center">
               <div className="relative">
                 <Image
-                  src="/images/david-miller-professional.jpg"
+                  src="/images/indian_man.jpg"
                   alt="Nirmal Jain - Charted Accountant"
                   width={320}
                   height={320}
@@ -188,7 +222,6 @@ export default function Home() {
                 />
               </div>
             </div>
-
             {/* Right Side - Service Badges */}
             <div className="lg:col-span-1 space-y-4">
               <div className="flex flex-col space-y-3">
@@ -198,14 +231,12 @@ export default function Home() {
                     Auditing
                   </Badge>
                 </div>
-
                 <div className="flex justify-center">
                   <Badge className="bg-orange-500 text-white rounded-full px-6 py-3 text-sm font-medium flex items-center">
                     <Plus className="h-4 w-4 mr-2" />
                     Financial Consulting
                   </Badge>
                 </div>
-
                 <div className="flex space-x-3">
                   <Badge className="bg-orange-500 text-white rounded-full px-6 py-3 text-sm font-medium">
                     Bookkeeping
@@ -215,13 +246,9 @@ export default function Home() {
                   </Badge>
                 </div>
               </div>
-
               <div className="mt-8 text-right">
-                
                 <div className="flex justify-end space-x-3">
-                  <div className="w-10 h-10 bg-white-800 rounded-full flex items-center justify-center">
-                 
-                  </div>
+                  <div className="w-10 h-10 bg-white-800 rounded-full flex items-center justify-center"></div>
                   <div className="w-10 h-10 bg-white-800 rounded-full flex items-center justify-center">
                     <span className="text-white text-sm">tw</span>
                   </div>
@@ -235,7 +262,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-
           {/* Call to Action Buttons */}
           <div className="flex justify-center space-x-6">
             <Button
@@ -268,7 +294,6 @@ export default function Home() {
               regulatory compliance.
             </p>
           </div>
-
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <Card className="p-8 border-0 shadow-lg bg-white hover:shadow-xl transition-shadow">
               <div className="w-16 h-16 bg-orange-500 rounded-2xl flex items-center justify-center mb-6">
@@ -280,7 +305,6 @@ export default function Home() {
                 with all regulations.
               </p>
             </Card>
-
             <Card className="p-8 border-0 shadow-lg bg-white hover:shadow-xl transition-shadow">
               <div className="w-16 h-16 bg-orange-500 rounded-2xl flex items-center justify-center mb-6">
                 <TrendingUp className="h-8 w-8 text-white" />
@@ -291,7 +315,6 @@ export default function Home() {
                 financial performance.
               </p>
             </Card>
-
             <Card className="p-8 border-0 shadow-lg bg-white hover:shadow-xl transition-shadow">
               <div className="w-16 h-16 bg-orange-500 rounded-2xl flex items-center justify-center mb-6">
                 <Shield className="h-8 w-8 text-white" />
@@ -302,7 +325,6 @@ export default function Home() {
                 reporting.
               </p>
             </Card>
-
             <Card className="p-8 border-0 shadow-lg bg-white hover:shadow-xl transition-shadow">
               <div className="w-16 h-16 bg-orange-500 rounded-2xl flex items-center justify-center mb-6">
                 <FileText className="h-8 w-8 text-white" />
@@ -313,7 +335,6 @@ export default function Home() {
                 growth.
               </p>
             </Card>
-
             <Card className="p-8 border-0 shadow-lg bg-white hover:shadow-xl transition-shadow">
               <div className="w-16 h-16 bg-orange-500 rounded-2xl flex items-center justify-center mb-6">
                 <Briefcase className="h-8 w-8 text-white" />
@@ -324,7 +345,6 @@ export default function Home() {
                 opportunities.
               </p>
             </Card>
-
             <Card className="p-8 border-0 shadow-lg bg-white hover:shadow-xl transition-shadow">
               <div className="w-16 h-16 bg-orange-500 rounded-2xl flex items-center justify-center mb-6">
                 <TrendingUp className="h-8 w-8 text-white" />
@@ -335,7 +355,6 @@ export default function Home() {
                 decisions.
               </p>
             </Card>
-
             <Card className="p-8 border-0 shadow-lg bg-white hover:shadow-xl transition-shadow">
               <div className="w-16 h-16 bg-orange-500 rounded-2xl flex items-center justify-center mb-6">
                 <Shield className="h-8 w-8 text-white" />
@@ -346,7 +365,6 @@ export default function Home() {
                 standards.
               </p>
             </Card>
-
             <Card className="p-8 border-0 shadow-lg bg-white hover:shadow-xl transition-shadow">
               <div className="w-16 h-16 bg-orange-500 rounded-2xl flex items-center justify-center mb-6">
                 <Calculator className="h-8 w-8 text-white" />
@@ -366,18 +384,14 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="relative">
-             <div className="rounded-full p-8 relative">
-                
+              <div className="rounded-full p-8 relative">
                 <Image
-                  src="/images/david-miller-professional.jpg"
+                  src="/images/indian_man.jpg"
                   alt="David Miller"
                   width={394}
                   height={394}
                   className="rounded-full w-97 h-97 object-cover"
-               
-               
                 />
-
                 <div className="absolute -top-4 -left-8 bg-white rounded-2xl shadow-lg p-4">
                   <div className="flex items-center space-x-3">
                     <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center">
@@ -389,7 +403,6 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-
                 <div className="absolute -bottom-6 -right-6 bg-black text-white rounded-2xl p-4">
                   <div className="flex items-center space-x-2">
                     <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
@@ -400,7 +413,6 @@ export default function Home() {
                 </div>
               </div>
             </div>
-
             <div className="space-y-8">
               <div className="space-y-4">
                 <div className="text-orange-500 font-medium">— About Me</div>
@@ -417,7 +429,6 @@ export default function Home() {
                   and delivering personalized financial strategies that align with their business goals.
                 </p>
               </div>
-
               <div className="grid grid-cols-3 gap-8">
                 <div className="text-center">
                   <div className="text-3xl font-bold text-gray-900">750+</div>
@@ -432,7 +443,6 @@ export default function Home() {
                   <div className="text-sm text-gray-600">Years of Experience</div>
                 </div>
               </div>
-
               <div className="flex items-center space-x-6">
                 <div className="flex items-center space-x-2">
                   <Phone className="h-5 w-5 text-orange-500" />
@@ -468,7 +478,6 @@ export default function Home() {
               </div>
             </Button>
           </div>
-
           <div className="grid md:grid-cols-3 gap-8">
             {/* Hourly Card */}
             <Card className="border-0 shadow-lg overflow-hidden rounded-2xl">
@@ -509,28 +518,27 @@ export default function Home() {
                     </div>
                     <span className="text-gray-700 font-medium">Compliance guidance</span>
                   </li>
-                  <li className="flex items-center opacity-40">
-                    <div className="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center mr-4">
-                      <CheckCircle className="h-4 w-4 text-gray-400" />
+                  <li className="flex items-center">
+                    <div className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center mr-4">
+                      <CheckCircle className="h-4 w-4 text-white" />
                     </div>
-                    <span className="text-gray-400 font-medium">Monthly financial reports</span>
+                    <span className="text-gray-700 font-medium">Monthly financial reports</span>
                   </li>
-                  <li className="flex items-center opacity-40">
-                    <div className="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center mr-4">
-                      <CheckCircle className="h-4 w-4 text-gray-400" />
+                  <li className="flex items-center">
+                    <div className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center mr-4">
+                      <CheckCircle className="h-4 w-4 text-white" />
                     </div>
-                    <span className="text-gray-400 font-medium">Priority support access</span>
+                    <span className="text-gray-700 font-medium">Priority support access</span>
                   </li>
-                  <li className="flex items-center opacity-40">
-                    <div className="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center mr-4">
-                      <CheckCircle className="h-4 w-4 text-gray-400" />
+                  <li className="flex items-center">
+                    <div className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center mr-4">
+                      <CheckCircle className="h-4 w-4 text-white" />
                     </div>
-                    <span className="text-gray-400 font-medium">Dedicated account manager</span>
+                    <span className="text-gray-700 font-medium">Dedicated account manager</span>
                   </li>
                 </ul>
               </CardContent>
             </Card>
-
             {/* Monthly Card */}
             <Card className="border-0 shadow-lg overflow-hidden rounded-2xl">
               <div className="bg-orange-500 text-white p-8 relative">
@@ -576,22 +584,21 @@ export default function Home() {
                     </div>
                     <span className="text-gray-700 font-medium">Priority support access</span>
                   </li>
-                  <li className="flex items-center opacity-40">
-                    <div className="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center mr-4">
-                      <CheckCircle className="h-4 w-4 text-gray-400" />
+                  <li className="flex items-center">
+                    <div className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center mr-4">
+                      <CheckCircle className="h-4 w-4 text-white" />
                     </div>
-                    <span className="text-gray-400 font-medium">Strategic business planning</span>
+                    <span className="text-gray-700 font-medium">Strategic business planning</span>
                   </li>
-                  <li className="flex items-center opacity-40">
-                    <div className="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center mr-4">
-                      <CheckCircle className="h-4 w-4 text-gray-400" />
+                  <li className="flex items-center">
+                    <div className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center mr-4">
+                      <CheckCircle className="h-4 w-4 text-white" />
                     </div>
-                    <span className="text-gray-400 font-medium">Dedicated account manager</span>
+                    <span className="text-gray-700 font-medium">Dedicated account manager</span>
                   </li>
                 </ul>
               </CardContent>
             </Card>
-
             {/* Quarterly Card */}
             <Card className="border-0 shadow-lg overflow-hidden rounded-2xl">
               <div className="bg-orange-500 text-white p-8 relative">
@@ -602,7 +609,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="text-4xl font-bold">
-                   ₹651,000 INR<span className="text-lg font-normal opacity-80"> / Qtr.</span>
+                  ₹651,000 INR<span className="text-lg font-normal opacity-80"> / Qtr.</span>
                 </div>
               </div>
               <CardContent className="p-8">
@@ -657,7 +664,7 @@ export default function Home() {
       </section>
 
       {/* Page 5: Contact Me */}
-      <section id="contact" className="py-20 bg-white">
+      <section id="contact" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <div className="text-orange-500 font-medium mb-4">— Contact Me</div>
@@ -665,16 +672,17 @@ export default function Home() {
               Let's Talk for <span className="text-orange-500">Your Next Projects</span>
             </h2>
           </div>
-
           <div className="grid lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2">
               <Card className="p-8 border-0 shadow-lg bg-white">
-                <form className="space-y-6">
+                <form onSubmit={handleFormSubmit} className="space-y-6">
+                  {/* Keep all existing form fields exactly the same */}
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-semibold text-gray-900 mb-2">Your Name *</label>
                       <input
                         type="text"
+                        required
                         className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 bg-gray-50"
                         placeholder="Ex. John Doe"
                       />
@@ -683,86 +691,122 @@ export default function Home() {
                       <label className="block text-sm font-semibold text-gray-900 mb-2">Email *</label>
                       <input
                         type="email"
+                        required
                         className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 bg-gray-50"
                         placeholder="example@gmail.com"
                       />
                     </div>
                   </div>
-
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-semibold text-gray-900 mb-2">Phone *</label>
                       <input
                         type="tel"
+                        required
                         className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 bg-gray-50"
                         placeholder="Enter Phone Number"
                       />
                     </div>
                     <div>
                       <label className="block text-sm font-semibold text-gray-900 mb-2">I'm Interested in *</label>
-                      <select className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 bg-gray-50">
-                        <option>Select Service</option>
+                      <select
+                        required
+                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 bg-gray-50"
+                      >
+                        <option value="">Select Service</option>
                         <option>Tax Planning</option>
                         <option>Financial Consulting</option>
                         <option>Auditing</option>
                         <option>Bookkeeping</option>
+                        <option>Website Development</option>
+                        <option>Mobile App Development</option>
                       </select>
                     </div>
                   </div>
-
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-semibold text-gray-900 mb-2">Budget Range (USD) *</label>
-                      <select className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 bg-gray-50">
-                        <option>Select Range</option>
-                        <option>₹84,000 INR - ₹435,350 INR </option>
-                        <option> ₹435,350 INR -  ₹865,000 INR</option>
-                        <option> ₹865,000 INR+</option>
+                      <label className="block text-sm font-semibold text-gray-900 mb-2">Budget Range (INR) *</label>
+                      <select
+                        required
+                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 bg-gray-50"
+                      >
+                        <option value="">Select Range</option>
+                        <option>₹84,000 INR - ₹435,350 INR</option>
+                        <option>₹435,350 INR - ₹865,000 INR</option>
+                        <option>₹865,000 INR+</option>
                       </select>
                     </div>
                     <div>
                       <label className="block text-sm font-semibold text-gray-900 mb-2">Country *</label>
-                      <select className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 bg-gray-50">
-                        <option>Select Country</option>
+                      <select
+                        required
+                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 bg-gray-50"
+                      >
+                        <option value="">Select Country</option>
+                        <option>India</option>
                         <option>United States</option>
                         <option>Canada</option>
                         <option>Other</option>
                       </select>
                     </div>
                   </div>
-
                   <div>
                     <label className="block text-sm font-semibold text-gray-900 mb-2">Your Message *</label>
                     <textarea
                       rows={5}
+                      required
                       className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 bg-gray-50"
                       placeholder="Tell me about your accounting needs..."
                     ></textarea>
                   </div>
-
-                  <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg text-lg font-medium">
+                  <Button
+                    type="submit"
+                    className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg text-lg font-medium"
+                  >
                     Send Message
                   </Button>
                 </form>
+
+                {/* Success Modal */}
+                {showSuccessModal && (
+                  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                    <div className="bg-white rounded-2xl p-8 max-w-md mx-4 text-center shadow-2xl transform animate-in fade-in duration-300">
+                      <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <CheckCircle className="h-8 w-8 text-green-500" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900 mb-2">Message Sent Successfully!</h3>
+                      <p className="text-gray-600 mb-6">
+                        Thank you for reaching out! I'll get back to you within 24 hours to discuss your accounting
+                        needs.
+                      </p>
+                      <div className="flex items-center justify-center space-x-2 text-sm text-gray-500 mb-4">
+                        <Clock className="h-4 w-4" />
+                        <span>Expected response time: 2-24 hours</span>
+                      </div>
+                      <Button
+                        onClick={() => setShowSuccessModal(false)}
+                        className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg"
+                      >
+                        Close
+                      </Button>
+                    </div>
+                  </div>
+                )}
               </Card>
             </div>
-
             <div>
               <Card className="p-8 bg-black text-white border-0 rounded-3xl">
                 <h3 className="text-2xl font-bold text-orange-500 mb-6">Address</h3>
                 <p className="text-gray-300 mb-8">
                   123, Financial Square,
-
                   <br />
                   Suite 456, New Delhi 110001
                 </p>
-
                 <h3 className="text-2xl font-bold text-orange-500 mb-6">Contact</h3>
                 <div className="space-y-4 mb-8">
                   <div>Phone : +1 (555) 123-4567</div>
-                  <div>Email :Nirmal@financeexpert.com</div>
+                  <div>Email : Nirmal@financeexpert.com</div>
                 </div>
-
                 <h3 className="text-2xl font-bold text-orange-500 mb-6">Time</h3>
                 <div className="space-y-2 text-gray-300">
                   <div>Monday - Friday : 9:00 - 18:00</div>
@@ -775,7 +819,7 @@ export default function Home() {
       </section>
 
       {/* Page 6: Client Testimonials */}
-      <section id="testimonials" className="py-20 bg-gray-50">
+      <section id="testimonials" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <div className="text-orange-500 font-medium mb-4">— Client Testimonials</div>
@@ -783,7 +827,6 @@ export default function Home() {
               What My <span className="text-orange-500">Clients Are Saying</span>
             </h2>
           </div>
-
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <Card className="p-8 border-0 shadow-lg bg-white">
               <div className="flex items-center mb-6">
@@ -807,14 +850,12 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-
               <div className="text-3xl text-orange-500 font-bold mb-4">❝</div>
               <p className="text-gray-600 leading-relaxed">
                 David's expertise in tax planning saved our company over $50,000 last year. His proactive approach and
                 attention to detail are exceptional.
               </p>
             </Card>
-
             <Card className="p-8 border-0 shadow-lg bg-white">
               <div className="flex items-center mb-6">
                 <Image
@@ -837,7 +878,6 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-
               <div className="text-3xl text-orange-500 font-bold mb-4">❝</div>
               <p className="text-gray-600 leading-relaxed">
                 Professional, reliable, and always available when we need guidance. David has become an integral part of
@@ -849,7 +889,7 @@ export default function Home() {
       </section>
 
       {/* Page 7: FAQs */}
-      <section id="faq" className="py-20 bg-white">
+      <section id="faq" className="py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 relative">
           <div className="text-center mb-16">
             <div className="text-orange-500 font-medium mb-4">— Frequently Asked Questions</div>
@@ -857,9 +897,8 @@ export default function Home() {
               Questions? <span className="text-orange-500">Look here</span>
             </h2>
           </div>
-
           <div className="space-y-4">
-            <div className="bg-gray-50 rounded-2xl shadow-sm border">
+            <div className="bg-white rounded-2xl shadow-sm border">
               <button
                 onClick={() => setOpenFaq(openFaq === 1 ? null : 1)}
                 className="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-gray-100 rounded-2xl"
@@ -883,7 +922,6 @@ export default function Home() {
                 </div>
               )}
             </div>
-
             <div className="bg-orange-500 rounded-2xl shadow-sm">
               <button className="w-full px-8 py-6 text-left flex items-center justify-between text-white rounded-2xl">
                 <span className="text-lg font-semibold">What accounting services do you specialize in?</span>
@@ -896,8 +934,7 @@ export default function Home() {
                 </p>
               </div>
             </div>
-
-            <div className="bg-gray-50 rounded-2xl shadow-sm border">
+            <div className="bg-white rounded-2xl shadow-sm border">
               <button
                 onClick={() => setOpenFaq(openFaq === 3 ? null : 3)}
                 className="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-gray-100 rounded-2xl"
@@ -921,8 +958,7 @@ export default function Home() {
                 </div>
               )}
             </div>
-
-            <div className="bg-gray-50 rounded-2xl shadow-sm border">
+            <div className="bg-white rounded-2xl shadow-sm border">
               <button
                 onClick={() => setOpenFaq(openFaq === 4 ? null : 4)}
                 className="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-gray-100 rounded-2xl"
@@ -946,8 +982,7 @@ export default function Home() {
                 </div>
               )}
             </div>
-
-            <div className="bg-gray-50 rounded-2xl shadow-sm border">
+            <div className="bg-white rounded-2xl shadow-sm border">
               <button
                 onClick={() => setOpenFaq(openFaq === 5 ? null : 5)}
                 className="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-gray-100 rounded-2xl"
@@ -971,8 +1006,7 @@ export default function Home() {
                 </div>
               )}
             </div>
-
-            <div className="bg-gray-50 rounded-2xl shadow-sm border">
+            <div className="bg-white rounded-2xl shadow-sm border">
               <button
                 onClick={() => setOpenFaq(openFaq === 6 ? null : 6)}
                 className="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-gray-100 rounded-2xl"
@@ -997,7 +1031,6 @@ export default function Home() {
               )}
             </div>
           </div>
-
           {/* Ask Away Section */}
           <div className="mt-16 text-center">
             <Card className="bg-black text-white p-8 rounded-3xl max-w-md mx-auto">
@@ -1017,7 +1050,6 @@ export default function Home() {
                 </Button>
               </div>
             </Card>
-
             <div className="mt-6">
               <div className="text-orange-500 text-sm mb-2">Your Success, My Priority</div>
               <div className="text-2xl font-bold text-gray-900">Available 24/7</div>
@@ -1028,7 +1060,7 @@ export default function Home() {
       </section>
 
       {/* Page 8: Let's Connect There */}
-      <section className="bg-gray-50 py-20">
+      <section className="bg-white py-20">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <div className="text-orange-500 font-medium mb-4">— Get In Touch</div>
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
@@ -1048,7 +1080,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-white py-16 border-t">
+      <footer className="bg-gray-50 py-16 border-t">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             <div className="space-y-6">
@@ -1080,13 +1112,12 @@ export default function Home() {
                 </div>
               </div>
             </div>
-
             <div>
               <h3 className="font-bold text-lg mb-6 text-orange-500">Navigation</h3>
               <ul className="space-y-3 text-gray-600">
                 <li>
                   <button onClick={() => scrollToSection("home")} className="hover:text-orange-500 transition-colors">
-                   <b>Home</b> 
+                    <b>Home</b>
                   </button>
                 </li>
                 <li>
@@ -1111,6 +1142,11 @@ export default function Home() {
                   </button>
                 </li>
                 <li>
+                  <Link href="/pricing-plan" className="hover:text-orange-500 transition-colors">
+                    Pricing Plan
+                  </Link>
+                </li>
+                <li>
                   <button
                     onClick={() => scrollToSection("contact")}
                     className="hover:text-orange-500 transition-colors"
@@ -1120,7 +1156,6 @@ export default function Home() {
                 </li>
               </ul>
             </div>
-
             <div>
               <h3 className="font-bold text-lg mb-6 text-orange-500">Contact</h3>
               <ul className="space-y-3 text-gray-600">
@@ -1128,13 +1163,12 @@ export default function Home() {
                 <li>www.financeexpert.com</li>
                 <li>Nirmal@financeexpert.com</li>
                 <li>
-                 123, Financial Square,
+                  123, Financial Square,
                   <br />
                   Suite 456, New Delhi 110001
                 </li>
               </ul>
             </div>
-
             <div>
               <h3 className="font-bold text-lg mb-6 text-orange-500">Newsletter</h3>
               <p className="text-gray-600 mb-4 text-sm">Subscribe to get the latest updates and insights</p>
