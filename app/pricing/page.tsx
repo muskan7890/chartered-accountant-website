@@ -182,7 +182,7 @@ export default function PricingPage() {
           {/* Development Timeframe */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-xl text-purple-600">Development Timeframe</CardTitle>
+              <CardTitle className="text-xl text-orange-600">Development Timeframe</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-2 gap-4">
