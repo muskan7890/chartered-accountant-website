@@ -1,5 +1,3 @@
-
-
 "use client"
 
 import type React from "react"
@@ -147,7 +145,7 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Page 1: I'm David - Hero Section */}
+      {/* Page 1: I'm Nirmal - Hero Section */}
       <section id="home" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-8">
