@@ -31,14 +31,16 @@ import {
   Bell,
   CreditCard,
   BarChart3,
+Menu, X
 } from "lucide-react"
+
 import Image from "next/image"
 import Link from "next/link"
 
 export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(2)
   const [showSuccessModal, setShowSuccessModal] = useState(false)
-
+const [menuOpen, setMenuOpen] = useState(false);
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
@@ -88,63 +90,64 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
-      <nav className="bg-white shadow-sm border-b sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center">
-                <Calculator className="h-6 w-6 text-white" />
-              </div>
-              <span className="ml-3 text-xl font-bold text-gray-900">FinanceExpert.</span>
+       <nav className="bg-white shadow-sm border-b sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="flex justify-between items-center h-16">
+         
+          <div className="flex items-center">
+            <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center">
+              <Calculator className="h-6 w-6 text-white" />
             </div>
-            <div className="hidden md:flex space-x-8">
-              <button
-                onClick={() => scrollToSection("home")}
-                className="text-orange-500 font-medium hover:text-orange-600 transition-colors"
-              >
-                <b>Home</b>
-              </button>
-              <button
-                onClick={() => scrollToSection("services")}
-                className="text-gray-700 hover:text-orange-500 font-medium transition-colors"
-              >
-                <b>Services</b>
-              </button>
-              <button
-                onClick={() => scrollToSection("about")}
-                className="text-gray-700 hover:text-orange-500 font-medium transition-colors"
-              >
-                <b>About</b>
-              </button>
-              <button
-                onClick={() => scrollToSection("pricing")}
-                className="text-gray-700 hover:text-orange-500 font-medium transition-colors"
-              >
-                <b>Pricing</b>
-              </button>
-              <Link href="/pricing-plan">
-                <button className="text-gray-700 hover:text-orange-500 font-medium transition-colors">
-                  <b>Pricing Plan</b>
-                </button>
-              </Link>
-              <button
-                onClick={() => scrollToSection("contact")}
-                className="text-gray-700 hover:text-orange-500 font-medium transition-colors"
-              >
-                <b>Contact</b>
-              </button>
-            </div>
-            <Button
-              onClick={() => scrollToSection("contact")}
-              className="bg-black text-white hover:bg-gray-800 rounded-full px-6"
-            >
+            <span className="ml-3 text-xl font-bold text-gray-900">FinanceExpert.</span>
+          </div>
+
+          {/* Desktop Menu */}
+          <div className="hidden md:flex space-x-8">
+            <button onClick={() => scrollToSection("home")} className="text-orange-500 font-medium hover:text-orange-600 transition-colors"><b>Home</b></button>
+            <button onClick={() => scrollToSection("services")} className="text-gray-700 hover:text-orange-500 font-medium transition-colors"><b>Services</b></button>
+            <button onClick={() => scrollToSection("about")} className="text-gray-700 hover:text-orange-500 font-medium transition-colors"><b>About</b></button>
+            <button onClick={() => scrollToSection("pricing")} className="text-gray-700 hover:text-orange-500 font-medium transition-colors"><b>Pricing</b></button>
+            <Link href="/pricing-plan">
+              <button className="text-gray-700 hover:text-orange-500 font-medium transition-colors"><b>Pricing Plan</b></button>
+            </Link>
+            <button onClick={() => scrollToSection("contact")} className="text-gray-700 hover:text-orange-500 font-medium transition-colors"><b>Contact</b></button>
+          </div>
+
+          {/* Mobile Hamburger Icon */}
+          <div className="md:hidden flex items-center">
+            <button onClick={() => setMenuOpen(!menuOpen)} className="mr-3">
+              {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
+
+          {/* Contact Button */}
+          <div className="hidden md:block">
+            <Button onClick={() => scrollToSection("contact")} className="bg-black text-white hover:bg-gray-800 rounded-full px-6">
               Contact Me
             </Button>
-            <Image src="/images/download.jpg" alt="ashoka stambha" width={60} height={60} />
           </div>
-        </div>
-      </nav>
 
+          <Image src="/images/download.jpg" alt="ashoka stambha" width={60} height={60} />
+        </div>
+      </div>
+
+      {/* Mobile Menu Dropdown */}
+      {menuOpen && (
+        <div className="md:hidden px-4 pb-4 space-y-2 bg-white shadow">
+          <button onClick={() => scrollToSection("home")} className="block w-full text-left text-orange-500 font-medium hover:text-orange-600"><b>Home</b></button>
+          <button onClick={() => scrollToSection("services")} className="block w-full text-left text-gray-700 hover:text-orange-500 font-medium"><b>Services</b></button>
+          <button onClick={() => scrollToSection("about")} className="block w-full text-left text-gray-700 hover:text-orange-500 font-medium"><b>About</b></button>
+          <button onClick={() => scrollToSection("pricing")} className="block w-full text-left text-gray-700 hover:text-orange-500 font-medium"><b>Pricing</b></button>
+          <Link href="/pricing-plan">
+            <button className="block w-full text-left text-gray-700 hover:text-orange-500 font-medium"><b>Pricing Plan</b></button>
+          </Link>
+          <button onClick={() => scrollToSection("contact")} className="block w-full text-left text-gray-700 hover:text-orange-500 font-medium"><b>Contact</b></button>
+          <Button onClick={() => scrollToSection("contact")} className="w-full bg-black text-white hover:bg-gray-800 rounded-full mt-2">
+            Contact Me
+          </Button>
+        </div>
+      )}
+    </nav>
       {/* Page 1: I'm Nirmal - Hero Section */}
       <section id="home" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
